@@ -1,0 +1,25 @@
+/target/
+/screenshot/
+/apps/
+*.txt
+
+# Intellij
+.idea/
+.settings
+*.iml
+*.iws
+*.project
+*.classpath
+
+logs/
+.allure/
+allure-results/
+# Mac
+.DS_Store
+
+# Maven
+target/
+test-output/
+
+debug.log
+/bin/
