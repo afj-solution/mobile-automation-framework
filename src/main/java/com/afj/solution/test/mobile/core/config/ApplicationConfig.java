@@ -4,11 +4,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import lombok.Getter;
+import lombok.extern.log4j.Log4j;
+
 import com.afj.solution.test.mobile.core.annotation.Config;
 import com.afj.solution.test.mobile.core.enums.DeviceOs;
 import com.afj.solution.test.mobile.core.enums.DeviceType;
-import lombok.Getter;
-import lombok.extern.log4j.Log4j;
 
 import static java.util.Objects.requireNonNull;
 
@@ -66,13 +67,13 @@ public class ApplicationConfig {
             properties.load(fileInput);
             fileInput.close();
             this.deviceType = !properties.getProperty("device.type").equals("")
-                ? DeviceType.valueOf(properties.getProperty("device.type").toUpperCase()) : DeviceType.REAL;
+                    ? DeviceType.valueOf(properties.getProperty("device.type").toUpperCase()) : DeviceType.REAL;
             this.appiumIp = !properties.getProperty("appium.ip").equals("") ? properties.getProperty("appium.ip") : "0.0.0.0";
             this.appiumPort = !properties.getProperty("appium.port").equals("") ? properties.getProperty("appium.port") : "4723";
             this.timeout = !properties.getProperty("timeout").equals("") ? Integer.parseInt(properties.getProperty("timeout")) : 30;
             this.environment = !properties.getProperty("environment").equals("")
-                ? properties.getProperty("environment")
-                : "https://www.int.travelcar.com/nimda/";
+                    ? properties.getProperty("environment")
+                    : "https://www.int.travelcar.com/nimda/";
         } catch (IOException e) {
             log.info(String.format("Exception %s", e.getMessage()));
         }

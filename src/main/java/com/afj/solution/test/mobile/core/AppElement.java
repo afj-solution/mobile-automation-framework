@@ -2,12 +2,13 @@ package com.afj.solution.test.mobile.core;
 
 import java.util.function.Consumer;
 
-import com.afj.solution.test.mobile.core.enums.DeviceOs;
-import com.afj.solution.test.mobile.core.enums.ScrollTo;
-import com.afj.solution.test.mobile.core.exception.NoSuchOsException;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.openqa.selenium.By;
+
+import com.afj.solution.test.mobile.core.enums.DeviceOs;
+import com.afj.solution.test.mobile.core.enums.ScrollTo;
+import com.afj.solution.test.mobile.core.exception.NoSuchOsException;
 
 import static java.util.Objects.requireNonNull;
 

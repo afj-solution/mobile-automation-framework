@@ -4,15 +4,6 @@ import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
 
-import com.afj.solution.test.mobile.core.enums.DeviceOs;
-import com.afj.solution.test.mobile.core.enums.ScrollTo;
-import com.afj.solution.test.mobile.core.exception.NoSuchAttributeException;
-import com.afj.solution.test.mobile.core.service.device.DeviceService;
-import com.afj.solution.test.mobile.core.service.device.NetworkService;
-import com.afj.solution.test.mobile.core.service.elements.ElementService;
-import com.afj.solution.test.mobile.core.service.elements.ScrollService;
-import com.afj.solution.test.mobile.core.service.elements.SwipeService;
-import com.afj.solution.test.mobile.core.service.elements.WaitService;
 import com.google.common.base.Function;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
@@ -44,9 +35,18 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.afj.solution.test.mobile.core.annotation.Ignore;
 import com.afj.solution.test.mobile.core.config.ApplicationConfig;
+import com.afj.solution.test.mobile.core.enums.DeviceOs;
 import com.afj.solution.test.mobile.core.enums.DeviceType;
+import com.afj.solution.test.mobile.core.enums.ScrollTo;
+import com.afj.solution.test.mobile.core.exception.NoSuchAttributeException;
 import com.afj.solution.test.mobile.core.exception.NoValueInInputException;
+import com.afj.solution.test.mobile.core.service.device.DeviceService;
+import com.afj.solution.test.mobile.core.service.device.NetworkService;
 import com.afj.solution.test.mobile.core.service.elements.ActionService;
+import com.afj.solution.test.mobile.core.service.elements.ElementService;
+import com.afj.solution.test.mobile.core.service.elements.ScrollService;
+import com.afj.solution.test.mobile.core.service.elements.SwipeService;
+import com.afj.solution.test.mobile.core.service.elements.WaitService;
 
 import static com.afj.solution.test.mobile.core.constants.Utils.sleep;
 import static java.util.Objects.requireNonNull;
@@ -517,6 +517,9 @@ public abstract class AbstractService implements ActionService, ElementService, 
         waitForAttributeValue(element.get(applicationConfig.getPlatformName()), attributeName, expectedValue);
     }
 
+    /**
+     * @author Tomash Gombosh
+     */
     class Device implements DeviceService {
         private final AppiumDriver<MobileElement> driver = AbstractService.this.driver;
         private final ApplicationConfig applicationConfig = AbstractService.this.applicationConfig;
@@ -593,18 +596,23 @@ public abstract class AbstractService implements ActionService, ElementService, 
         }
     }
 
+    /**
+     * @author Tomash Gombosh
+     */
     class Network implements NetworkService {
         private AndroidDriver<MobileElement> driverAndroid;
         private IOSDriver<MobileElement> driverIos;
         private final ApplicationConfig applicationConfig = AbstractService.this.applicationConfig;
         private final Dimension winSize = AbstractService.this.winSize;
-        public Network() {
+
+        Network() {
             if (applicationConfig.getPlatformName().equals(DeviceOs.IOS)) {
                 this.driverIos = (IOSDriver<MobileElement>) driver;
             } else {
                 this.driverAndroid = (AndroidDriver<MobileElement>) driver;
             }
         }
+
         @Override
         public void turnOffAllNetworkConnections() {
             log.info(Thread.currentThread().getStackTrace()[1].getMethodName());
@@ -716,7 +724,6 @@ public abstract class AbstractService implements ActionService, ElementService, 
                     ? "wifi-button"
                     : "Wi-Fi";
             final String bluetoothButtonName = "bluetooth-button";
-
 
             for (int i = 0; i < 5; i++) {
                 try {

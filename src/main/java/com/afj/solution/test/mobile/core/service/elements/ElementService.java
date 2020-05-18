@@ -2,9 +2,10 @@ package com.afj.solution.test.mobile.core.service.elements;
 
 import java.util.List;
 
-import com.afj.solution.test.mobile.core.AppElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+
+import com.afj.solution.test.mobile.core.AppElement;
 
 /**
  * @author Tomash Gombosh

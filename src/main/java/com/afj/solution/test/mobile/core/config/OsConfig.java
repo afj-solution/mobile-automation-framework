@@ -4,8 +4,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-import com.afj.solution.test.mobile.core.exception.NoValueFromConfigException;
 import lombok.extern.log4j.Log4j;
+
+import com.afj.solution.test.mobile.core.exception.NoValueFromConfigException;
 
 /**
  * @author Tomash Gombosh

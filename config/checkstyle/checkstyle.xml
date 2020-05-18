@@ -20,7 +20,7 @@
     <!-- Sizes Violations -->
     <module name="FileLength">
         <property name="fileExtensions" value="java"/>
-        <property name="max" value="750"/>
+        <property name="max" value="820"/>
     </module>
 
     <!-- Whitespaces -->
@@ -84,6 +84,7 @@
         </module>
         <module name="AbstractClassName">
             <property name="ignoreModifier" value="true"/>
+            <property name="format" value="^(Abstract|(Ios|Android)).+$"/>
         </module>
         <module name="CatchParameterName"/>
         <module name="ClassTypeParameterName"/>
@@ -122,7 +123,7 @@
         <!-- Imports -->
         <module name="AvoidStarImport"/>
         <module name="CustomImportOrder">
-            <property name="specialImportsRegExp" value="^(com.free2move.qa.auto|com.travelcar.qa.auto.mobile)\."/>
+            <property name="specialImportsRegExp" value="com.afj.solution.test.mobile.core.*"/>
             <property name="customImportOrderRules"
                       value="STANDARD_JAVA_PACKAGE###THIRD_PARTY_PACKAGE###SPECIAL_IMPORTS###STATIC"/>
             <property name="sortImportsInGroupAlphabetically" value="true"/>
@@ -141,7 +142,7 @@
             <property name="max" value="65"/>
         </module>
         <module name="MethodCount">
-            <property name="maxTotal" value="52"/>
+            <property name="maxTotal" value="60"/>
         </module>
         <module name="MethodLength"/>
         <module name="OuterTypeNumber"/>
@@ -236,7 +237,9 @@
         <module name="CyclomaticComplexity">
             <property name="max" value="25"/>
         </module>
-<!--        <module name="JavaNCSS"/>-->
+        <module name="JavaNCSS">
+            <property name="methodMaximum" value="60"/>
+        </module>
 <!--        <module name="NPathComplexity"/>-->
     </module>
 </module>

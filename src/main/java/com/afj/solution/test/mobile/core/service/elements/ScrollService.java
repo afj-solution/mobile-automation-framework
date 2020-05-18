@@ -1,7 +1,8 @@
 package com.afj.solution.test.mobile.core.service.elements;
 
-import com.afj.solution.test.mobile.core.enums.ScrollTo;
 import org.openqa.selenium.By;
+
+import com.afj.solution.test.mobile.core.enums.ScrollTo;
 
 /**
  * @author Tomash Gombosh

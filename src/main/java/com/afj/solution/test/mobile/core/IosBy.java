@@ -5,6 +5,9 @@ import java.io.Serializable;
 import io.appium.java_client.MobileBy;
 import org.openqa.selenium.By;
 
+/**
+ * @author Tomash Gombosh
+ */
 public abstract class IosBy extends By implements Serializable {
 
     private static final long serialVersionUID = -2991949292460596394L;
@@ -21,16 +24,16 @@ public abstract class IosBy extends By implements Serializable {
         return (IosBy) By.name(name);
     }
 
-    public static IosBy AccessibilityId(final String accessibilityId) {
+    public static IosBy accessibilityId(final String accessibilityId) {
         return (IosBy) MobileBy.AccessibilityId(accessibilityId);
     }
 
-    public static IosBy iOSNsPredicateString(final String iOSNsPredicateString) {
-        return (IosBy) MobileBy.iOSNsPredicateString(iOSNsPredicateString);
+    public static IosBy iosPredicateString(final String iosPredicateString) {
+        return (IosBy) MobileBy.iOSNsPredicateString(iosPredicateString);
     }
 
-    public static IosBy iOSClassChain(final String iOSClassChain) {
-        return (IosBy) MobileBy.iOSClassChain(iOSClassChain);
+    public static IosBy iosClassChain(final String iosClassChain) {
+        return (IosBy) MobileBy.iOSClassChain(iosClassChain);
     }
 
 }

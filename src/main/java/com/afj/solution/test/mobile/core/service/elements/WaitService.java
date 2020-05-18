@@ -1,7 +1,8 @@
 package com.afj.solution.test.mobile.core.service.elements;
 
-import com.afj.solution.test.mobile.core.AppElement;
 import org.openqa.selenium.By;
+
+import com.afj.solution.test.mobile.core.AppElement;
 
 /**
  * @author Tonash Gombosh

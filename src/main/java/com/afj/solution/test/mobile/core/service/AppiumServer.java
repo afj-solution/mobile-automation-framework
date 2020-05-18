@@ -3,13 +3,14 @@ package com.afj.solution.test.mobile.core.service;
 import java.io.IOException;
 import java.net.ServerSocket;
 
-import com.afj.solution.test.mobile.core.config.ApplicationConfig;
-import com.afj.solution.test.mobile.core.constants.Utils;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 import io.appium.java_client.service.local.flags.GeneralServerFlag;
 import lombok.extern.log4j.Log4j;
 import org.openqa.selenium.remote.DesiredCapabilities;
+
+import com.afj.solution.test.mobile.core.config.ApplicationConfig;
+import com.afj.solution.test.mobile.core.constants.Utils;
 
 /**
  * @author Tomash Gombosh

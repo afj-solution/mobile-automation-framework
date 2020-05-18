@@ -22,7 +22,8 @@ import static org.apache.velocity.texen.util.FileUtil.file;
  */
 @Log4j
 public class AppElementsSearcher {
-    @Getter(AccessLevel.PUBLIC) private final String screenPackage;
+    @Getter(AccessLevel.PUBLIC)
+    private final String screenPackage;
 
     public AppElementsSearcher(final String screenPackage) {
         requireNonNull(screenPackage, "App Element package can not be null");
@@ -37,8 +38,8 @@ public class AppElementsSearcher {
     public AppElement getAppElement(final String elementName, final String screenName) {
         log.info(String.format("Starting search for the '%s' element on the '%s' screen", elementName, screenName));
         final Class[] classesArray = screenName == null
-            ? getClasses()
-            : new Class[]{getClassByName(screenName)};
+                ? getClasses()
+                : new Class[]{getClassByName(screenName)};
         AppElement element = null;
         try {
             breakLabel:
@@ -46,7 +47,7 @@ public class AppElementsSearcher {
                 if (!Modifier.isAbstract(classes.getModifiers())) {
                     for (final Field field : classes.getDeclaredFields()) {
                         if (field.getType().toString().contains("com.free2move.qa.auto.utils.AppElement")
-                            && field.getName().equals(elementName.toUpperCase())) {
+                                && field.getName().equals(elementName.toUpperCase())) {
                             field.setAccessible(true);
                             element = (AppElement) field.get(AppElement.class);
                             field.setAccessible(false);
@@ -66,8 +67,8 @@ public class AppElementsSearcher {
 
     private Class getClassByName(final String className) {
         return Arrays.stream(requireNonNull(getClasses()))
-            .filter(aClass -> aClass.getSimpleName().equalsIgnoreCase(className + "Screen"))
-            .findAny().orElse(null);
+                .filter(aClass -> aClass.getSimpleName().equalsIgnoreCase(className + "Screen"))
+                .findAny().orElse(null);
     }
 
     private Class[] getClasses() {

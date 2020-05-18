@@ -2,8 +2,9 @@ package com.afj.solution.test.mobile.core.exception;
 
 import java.io.Serializable;
 
-import com.afj.solution.test.mobile.core.AppElement;
 import lombok.extern.log4j.Log4j;
+
+import com.afj.solution.test.mobile.core.AppElement;
 
 /**
  * @author Tomash Gombosh

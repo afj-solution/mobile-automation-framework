@@ -29,8 +29,8 @@
         <maven.compiler.version>3.8.0</maven.compiler.version>
         <maven.checkstyle.version>3.1.0</maven.checkstyle.version>
         <maven.pmd.version>3.12.0</maven.pmd.version>
-        <maven.xml.version>1.0.2</maven.xml.version>
         <maven.surefire.version>2.20</maven.surefire.version>
+        <maven.javadoc.version>3.2.0</maven.javadoc.version>
     </properties>
 
     <dependencies>
@@ -126,6 +126,15 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${maven.javadoc.version}</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
             </plugin>
         </plugins>
     </build>
