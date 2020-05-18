@@ -1,5 +1,6 @@
 package com.afj.solution.test.mobile.core.config;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -7,6 +8,8 @@ import java.util.Properties;
 import lombok.extern.log4j.Log4j;
 
 import com.afj.solution.test.mobile.core.exception.NoValueFromConfigException;
+
+import static java.util.Objects.nonNull;
 
 /**
  * @author Tomash Gombosh
@@ -24,8 +27,10 @@ public class OsConfig {
     }
 
     private void loadFile() {
-        final InputStream fileInput = getClass().getClassLoader().getResourceAsStream(propertiesFile);
         try {
+            final InputStream fileInput = nonNull(getClass().getClassLoader().getResourceAsStream(propertiesFile))
+                ? getClass().getClassLoader().getResourceAsStream(propertiesFile)
+                : new FileInputStream(propertiesFile);
             properties.load(fileInput);
             fileInput.close();
         } catch (IOException e) {

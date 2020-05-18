@@ -1,5 +1,6 @@
 package com.afj.solution.test.mobile.core.config;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -11,6 +12,7 @@ import com.afj.solution.test.mobile.core.annotation.Config;
 import com.afj.solution.test.mobile.core.enums.DeviceOs;
 import com.afj.solution.test.mobile.core.enums.DeviceType;
 
+import static java.util.Objects.nonNull;
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -50,9 +52,9 @@ public class ApplicationConfig {
         this.properties = appProperties;
         initGlobalProperties();
         if (platformName.equals(DeviceOs.ANDROID)) {
-            initOsProperties(new OsConfig(androidProperties));
+            initAndroid(new AndroidConfig(androidProperties));
         } else {
-            initOsProperties(new OsConfig(iosProperties));
+            initIos(new IosConfig(iosProperties));
         }
     }
 
@@ -62,7 +64,10 @@ public class ApplicationConfig {
 
     private void initGlobalProperties() {
         try {
-            final InputStream fileInput = getClass().getClassLoader().getResourceAsStream(properties);
+            final InputStream fileInput = nonNull(getClass().getClassLoader().getResourceAsStream(properties))
+                ? getClass().getClassLoader().getResourceAsStream(properties)
+                : new FileInputStream(properties);
+
             final Properties properties = new Properties();
             properties.load(fileInput);
             fileInput.close();
@@ -73,13 +78,13 @@ public class ApplicationConfig {
             this.timeout = !properties.getProperty("timeout").equals("") ? Integer.parseInt(properties.getProperty("timeout")) : 30;
             this.environment = !properties.getProperty("environment").equals("")
                     ? properties.getProperty("environment")
-                    : "https://www.int.travelcar.com/nimda/";
+                    : "https://www/nimda/";
         } catch (IOException e) {
             log.info(String.format("Exception %s", e.getMessage()));
         }
     }
 
-    private ApplicationConfig initOsProperties(final OsConfig androidConfig) {
+    private ApplicationConfig initAndroid(final AndroidConfig androidConfig) {
         this.baseUser = androidConfig.getUserName();
         this.baseUserPassword = androidConfig.getPassword();
         this.deviceName = androidConfig.getDeviceName();
@@ -88,6 +93,17 @@ public class ApplicationConfig {
         this.packageName = androidConfig.getAppPackage();
         this.platformVersion = androidConfig.getPlatformVersion();
         this.startActivity = androidConfig.getStartActivity();
+        return this;
+    }
+
+    private ApplicationConfig initIos(final IosConfig iosConfig) {
+        this.baseUser = iosConfig.getUserName();
+        this.baseUserPassword = iosConfig.getPassword();
+        this.deviceName = iosConfig.getDeviceName();
+        this.udid = iosConfig.getDeviceUdid();
+        this.appPath = iosConfig.getAppPath();
+        this.appPathOld = iosConfig.getAppPathOld();
+        this.platformVersion = iosConfig.getPlatformVersion();
         return this;
     }
 }
